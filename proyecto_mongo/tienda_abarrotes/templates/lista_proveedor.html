@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+{% block titulo %} Lista de proveedores {% endblock %}
+{% block contenido %} 
+<style>
+    body {
+        background: #f0f0f0;
+        margin: 0;
+        padding: 0;
+        font-family: 'Roboto', sans-serif;
+        font-size: 16px;
+    }
+
+    .card-header {
+        background-color: #9c27b0;
+        color: #fff;
+        padding: 20px;
+        font-size: 48px; /* Tamaño de fuente aumentado */
+        text-align: center;
+        border-radius: 10px 10px 0 0;
+        animation: neon 1.5s ease infinite alternate; /* Agregamos animación de neón */
+    }
+
+    .card-body {
+        background-color: #fff;
+        color: #333;
+        padding: 30px;
+        border-radius: 0 0 10px 10px;
+    }
+
+    .table {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .table th,
+    .table td {
+        border: 1px solid #ddd;
+        padding: 15px;
+        text-align: center;
+    }
+
+    .table thead th {
+        background-color: #673ab7;
+        color: #fff;
+        font-size: 18px;
+    }
+
+    .table tbody tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    .table tbody tr:hover {
+        background-color: #f0f0f0;
+    }
+
+    .btn-danger,
+    .btn-info {
+        color: #fff;
+        border-radius: 20px;
+        padding: 10px 20px;
+        margin: 10px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .btn-danger {
+        background-color: #ff5722;
+        border-color: #ff5722;
+    }
+
+    .btn-info {
+        background-color: #03a9f4;
+        border-color: #03a9f4;
+    }
+
+    .btn-danger:hover,
+    .btn-info:hover {
+        transform: scale(1.05);
+    }
+
+    /* Animación de neón para el título */
+    @keyframes neon {
+        from {
+            text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF00DD, 0 0 35px #FF00DD, 0 0 40px #FF00DD, 0 0 50px #FF00DD;
+        }
+        to {
+            text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF00DD, 0 0 35px #FF00DD, 0 0 40px #FF00DD, 0 0 50px #FF00DD;
+        }
+    }
+
+    /* Animaciones */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .animated {
+        animation-duration: 1s;
+        animation-fill-mode: both;
+        animation-timing-function: ease-out;
+    }
+
+    .fadeInUp {
+        animation-name: fadeInUp;
+    }
+</style>
+<div class="card animated fadeInUp"><br><br><br>
+    <div class="card-body">
+        <h2 class="card-title" style="text-align: center; font-size: 36px;">Lista de Proveedores</h2><br>
+        <div class="table-responsive">
+            <table class="table table">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre Producto</th>
+                        <th scope="col">Marca Producto</th>
+                        <th scope="col">Precio Producto</th>
+                        <th scope="col">Cantidad Producto</th>
+                        <th scope="col">Fecha de entrada</th>
+                        <th scope="col">Fecha de salida</th>
+                        <th scope="col">Telefono</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for proveedor in proveedores %}
+                    <tr class="">
+                        <td>{{ proveedor.clave_proveedor }}</td>
+                        <td>{{ proveedor.nombre_producto }}</td>
+                        <td>{{ proveedor.marca_producto }}</td>
+                        <td>{{ proveedor.precio_producto }}</td>
+                        <td>{{ proveedor.cantidad_producto }}</td>
+                        <td>{{ proveedor.fecha_entrada }}</td>
+                        <td>{{ proveedor.fecha_salida }}</td>
+                        <td>{{ proveedor.telefono }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

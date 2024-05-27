@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block titulo %} Lista de productos {% endblock %}
+{% block contenido %} <h1>crear gas</h1>
+<style>
+  h1{
+    color:white;
+  }
+   body {
+	background:#111110;
+			margin: 0;
+			padding: 0;
+			font-family: 'Lora', serif;
+			font-size: 16px;
+			line-height: 1.5;
+		}
+section {
+	padding: 20px;
+	margin: 30px;
+  background-color: #0D47A1; 
+	border: 1px solid #ddd;
+	box-shadow: 0px 0px 10px #ddd;
+}
+
+label.form-label{
+    color: white;
+}
+
+div.col-12.help-text{
+    color: white;
+  }
+</style>
+<section>
+<form action="" method="post" enctype="multipart/form-data">
+    {%csrf_token%}
+    {% for campo in formulario %}
+    <div class="mb-3">
+<label for="" class="form-label">{{campo.label}}</label>
+      <input type="{{campo.field.widget.input_type}}"
+        class="form-control" 
+        name="{{campo.name}}" 
+        id="" 
+        aria-describedby="helpId" 
+        placeholder="{{campo.label}}">
+        
+</div>
+<div class="col-12 help-text">{{campo.errors}}</div>
+{% endfor %}
+<input name="" id="" class="btn btn-success" type="submit" value="Guardar información">
+</form>
+</section>
+{% endblock %}

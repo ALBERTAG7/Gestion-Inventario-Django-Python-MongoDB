@@ -1,0 +1,171 @@
+{% extends 'base.html' %}
+{% block titulo %} Lista de productos {% endblock %}
+{% block contenido %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+            background: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
+        }
+    
+        .card-header {
+            background-color: #9c27b0;
+            color: #fff;
+            padding: 20px;
+            font-size: 48px; /* Tamaño de fuente aumentado */
+            text-align: center;
+            border-radius: 10px 10px 0 0;
+            animation: neon 1.5s ease infinite alternate; /* Agregamos animación de neón */
+        }
+    
+        .card-body {
+            background-color: #fff;
+            color: #333;
+            padding: 30px;
+            border-radius: 0 0 10px 10px;
+        }
+    
+        .table {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+    
+        .table th,
+        .table td {
+            border: 1px solid #ddd;
+            padding: 15px;
+            text-align: center;
+        }
+    
+        .table thead th {
+            background-color: #673ab7;
+            color: #fff;
+            font-size: 18px;
+        }
+    
+        .table tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    
+        .table tbody tr:hover {
+            background-color: #f0f0f0;
+        }
+    
+        .btn-danger,
+        .btn-info {
+            color: #fff;
+            border-radius: 20px;
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+    
+        .btn-danger {
+            background-color: #ff5722;
+            border-color: #ff5722;
+        }
+    
+        .btn-info {
+            background-color: #03a9f4;
+            border-color: #03a9f4;
+        }
+    
+        .btn-danger:hover,
+        .btn-info:hover {
+            transform: scale(1.05);
+        }
+    
+        /* Animación de neón para el título */
+        @keyframes neon {
+            from {
+                text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF00DD, 0 0 35px #FF00DD, 0 0 40px #FF00DD, 0 0 50px #FF00DD;
+            }
+            to {
+                text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF00DD, 0 0 35px #FF00DD, 0 0 40px #FF00DD, 0 0 50px #FF00DD;
+            }
+        }
+    
+        /* Animaciones */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    
+        .animated {
+            animation-duration: 1s;
+            animation-fill-mode: both;
+            animation-timing-function: ease-out;
+        }
+    
+        .fadeInUp {
+            animation-name: fadeInUp;
+        }
+    </style>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><br><br>c
+    <title>Tienda Alex - Lista de Productos</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="card">
+        <div class="card-header">
+            Tiendas Alex
+        </div>
+        <div class="card-body">
+            <h4 class="card-title">Lista de Productos</h4>
+            <form method="post">
+                {% csrf_token %}
+                <div class="table-responsive">
+                    <table class="table table">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Marca</th>
+                                <th scope="col">Precio</th>
+                                <th scope="col">Imagen</th>
+                                <th scope="col">Acciones</th> <!-- Nueva columna para editar -->
+                                <th scope="col">Eliminar</th> <!-- Nueva columna para eliminar -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for producto in productos %}
+                            <tr>
+                                <td>{{ producto.id_producto }}</td>
+                                <td><input type="text" name="nombre_{{ producto.id_producto }}" class="form-control" value="{{ producto.nombre }}"></td>
+                                <td><input type="text" name="marca_{{ producto.id_producto }}" class="form-control" value="{{ producto.marca }}"></td>
+                                <td><input type="text" name="precio_{{ producto.id_producto }}" class="form-control" value="{{ producto.precio }}"></td>
+                                <td><img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}" style="max-width: 100px; max-height: 100px;"></td>
+                                <td>
+                                    <button type="submit" name="guardar_{{ producto.id_producto }}" value="{{ producto.id_producto }}" class="btn btn-info">Guardar</button>
+                                </td>
+                                <td>
+                                    <button type="submit" name="eliminar_{{ producto.id_producto }}" value="{{ producto.id_producto }}" class="btn btn-danger">Eliminar</button>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}

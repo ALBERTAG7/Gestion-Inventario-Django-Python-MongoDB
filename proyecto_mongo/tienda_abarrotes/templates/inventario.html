@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% block titulo %} Editar Inventario {% endblock %}
+{% block contenido %} 
+<style>
+    body {
+        background: #f8f9fa;
+        margin: 0;
+        padding: 0;
+        font-family: 'Lora', serif;
+        font-size: 16px;
+    }
+
+    .card-header {
+        background-color: #343a40;
+        color: #fff;
+        padding: 10px;
+    }
+
+    .card-body {
+        background-color: #fff;
+        color: #343a40;
+    }
+
+    .table {
+        background-color: #fff;
+        border: 1px solid #ddd;
+    }
+
+    .table th,
+    .table td {
+        border: 1px solid #ddd;
+    }
+
+    .table thead th {
+        background-color: #343a40;
+        color: #fff;
+    }
+
+    .table-responsive {
+        overflow-x: auto;
+    }
+
+    .btn-danger,
+    .btn-info {
+        color: #fff;
+        border-radius: 20px;
+        padding: 5px 15px;
+        margin-right: 5px;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        border-color: #dc3545;
+    }
+
+    .btn-info {
+        background-color: #17a2b8;
+        border-color: #17a2b8;
+    }
+
+    .form-control {
+        width: 100%;
+        border: none;
+        border-radius: 5px;
+        padding: 5px 10px;
+        box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s ease;
+    }
+
+    .form-control:focus {
+        outline: none;
+        box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.2);
+    }
+</style>
+
+<div class="card">
+    <div class="card-header">
+      Tiendas Alex
+    </div>
+    <div class="card-body">
+        <h4 class="card-title">Editar Inventario</h4>
+        <div class="table-responsive">
+            <table class="table table-primary">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Marca</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">Fecha de Entrada</th>
+                        <th scope="col">Fecha de Salida</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in inventario %}
+                    <tr>
+                        <td>{{ item.id }}</td>
+                        <td><input type="text" class="form-control" value="{{ item.nombre }}"></td>
+                        <td><input type="text" class="form-control" value="{{ item.marca }}"></td>
+                        <td><input type="text" class="form-control" value="{{ item.precio }}"></td>
+                        <td><input type="text" class="form-control" value="{{ item.cantidad }}"></td>
+                        <td><input type="text" class="form-control" value="{{ item.fecha_entrada }}"></td>
+                        <td><input type="text" class="form-control" value="{{ item.fecha_salida }}"></td>
+                        <td>
+                            <button type="submit" class="btn btn-info">Guardar</button>
+                            <!-- Puedes agregar más botones para otras acciones si es necesario -->
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% block titulo %} Lista de productos {% endblock %}
+{% block contenido %} 
+<style>
+    body {
+        background: #f8f9fa;
+        margin: 0;
+        padding: 0;
+        font-family: 'Lora', serif;
+        font-size: 16px;
+    }
+
+    .card-header {
+        background-color: #343a40;
+        color: #fff;
+        padding: 10px;
+    }
+
+    .card-body {
+        background-color: #fff;
+        color: #343a40;
+    }
+
+    .table {
+        background-color: #fff;
+        border: 1px solid #ddd;
+    }
+
+    .table th,
+    .table td {
+        border: 1px solid #ddd;
+    }
+
+    .table thead th {
+        background-color: #343a40;
+        color: #fff;
+    }
+
+    .table-responsive {
+        overflow-x: auto;
+    }
+
+    .btn-danger,
+    .btn-info {
+        color: #fff;
+        border-radius: 20px;
+        padding: 5px 15px;
+        margin-right: 5px;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        border-color: #dc3545;
+    }
+
+    .btn-info {
+        background-color: #17a2b8;
+        border-color: #17a2b8;
+    }
+</style>
+<div class="card">
+    <div class="card-header">
+      TIENDAS ALEX
+    </div>
+    <div class="card-body">
+        <h4 class="card-title">ALEX</h4>
+        <div class="table-responsive">
+            <table class="table table-primary">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Marca</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Imagen</th>
+                        <th scope="col">Acciones</th> <!-- Agregar columna de Acciones -->
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for producto in productos %}
+                    <tr class="">
+                        <td scope="row">{{ producto.id_producto }}</td>
+                        <td>{{ producto.nombre }}</td>
+                        <td>{{ producto.marca }}</td>
+                        <td>{{ producto.precio }}</td>
+                        <td><img src="{{ producto.imagen.url }}" alt="" height="100"></td>
+                        <td> 
+                            <a class="btn btn-danger" href="{% url 'eliminar' producto.id_producto %}" role="button">Borrar</a> <!-- Corregir la URL y la variable del producto -->
+                            <a class="btn btn-info" href="#" role="button">Editar</a>
+                        </td>
+                    </tr>
+                   {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

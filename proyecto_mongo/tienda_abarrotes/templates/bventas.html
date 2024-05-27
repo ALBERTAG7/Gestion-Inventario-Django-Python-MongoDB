@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% block titulo %} Lista de proveedores {% endblock %}
+{% block contenido %} 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Búsqueda de Ventas</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #f8f9fa; /* Color de fondo */
+            font-family: 'Poppins', sans-serif; /* Fuente */
+            color: #343a40; /* Color de texto */
+        }
+
+        h1 {
+            font-size: 36px; /* Tamaño de fuente del título principal */
+            font-weight: bold; /* Negrita */
+            margin-bottom: 30px; /* Margen inferior */
+            color: #212529; /* Color del texto */
+            text-align: center; /* Alineación centrada */
+        }
+
+        form {
+            text-align: center; /* Alineación centrada */
+        }
+
+        .form-control {
+            border-radius: 30px; /* Bordes redondeados */
+            border: 2px solid #6c757d; /* Borde sólido */
+            font-size: 16px; /* Tamaño de fuente del campo de entrada */
+        }
+
+        .btn-primary {
+            border-radius: 30px; /* Bordes redondeados */
+            padding: 10px 30px; /* Relleno */
+            font-size: 18px; /* Tamaño de fuente del botón */
+            background-color: #007bff; /* Color de fondo del botón */
+            border: none; /* Sin borde */
+            transition: all 0.3s ease; /* Transición suave */
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3; /* Cambio de color al pasar el ratón */
+        }
+
+        ul {
+            list-style-type: none; /* Sin viñetas */
+            padding-left: 0; /* Eliminar relleno izquierdo */
+        }
+
+        ul li {
+            font-size: 18px; /* Tamaño de fuente de los elementos de la lista */
+            margin-bottom: 10px; /* Margen inferior */
+        }
+
+        ul li:before {
+            content: "\2022"; /* Círculo pequeño */
+            color: #007bff; /* Color del círculo */
+            font-weight: bold; /* Negrita */
+            display: inline-block; /* Mostrar en línea */
+            width: 1em; /* Anchura */
+            margin-left: -1em; /* Margen izquierdo negativo */
+        }
+
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">TIENDAS ALEX</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+        <a class="nav-link" href="#">Acerca de</a>
+        <a class="nav-link" href="#">Conócenos</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-5">
+    <h1>Búsqueda de Ventas</h1>
+    <form action="{% url 'busqueda' %}" method="GET" class="mb-4">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Buscar por número de vendedor, cliente o fecha en formato (AÑO-MES-DIA)" name="query">
+            <button class="btn btn-primary" type="submit">Buscar</button>
+        </div>
+    </form>
+
+    {% if resultados %}
+    <h2>Resultados de la búsqueda:</h2>
+    <ul>
+        {% for resultado in resultados %}
+            <li>{{ resultado.clave_empleado }} - {{ resultado.nombre_cliente }} - {{ resultado.fecha }}</li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No se encontraron resultados. Aquí está la lista completa de ventas:</p>
+    <ul>
+        {% for venta in ventas %}
+            <li>{{ venta.clave_empleado }} - {{ venta.nombre_cliente }} - {{ venta.fecha }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</div>
+
+<!-- Bootstrap JS y dependencias -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+{% endblock %}

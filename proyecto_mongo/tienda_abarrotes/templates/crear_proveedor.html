@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+{% block titulo %} Formulario de Proveedor {% endblock %}
+{% block contenido %}
+<h1 style="text-align: center; color: #333; font-family: 'Roboto', sans-serif; font-size: 36px; margin-bottom: 30px;">Agregar Proveedor</h1>
+<style>
+    body {
+        background: #f9f9f9;
+        margin: 0;
+        padding: 0;
+        font-family: 'Roboto', sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+    }
+
+    section {
+        padding: 30px;
+        margin: 30px auto;
+        max-width: 600px;
+        background-color: #fff;
+        border-radius: 15px;
+        box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    label.form-label {
+        color: #555;
+        font-weight: bold;
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    input.form-control {
+        width: calc(100% - 20px);
+        padding: 15px;
+        font-size: 16px;
+        border: none;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s ease;
+    }
+
+    input.form-control:focus {
+        outline: none;
+        box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .col-12.help-text {
+        color: #f44336;
+        font-size: 14px;
+        margin-top: -10px;
+        margin-bottom: 20px;
+    }
+
+    input.btn {
+        display: block;
+        width: 100%;
+        padding: 15px;
+        background-color: #2ecc71;
+        color: #fff;
+        font-size: 16px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    input.btn:hover {
+        background-color: #27ae60;
+    }
+
+    input.btn:active {
+        transform: translateY(2px);
+        box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.2);
+    }
+</style>
+<section>
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="id_nombre_producto" class="form-label">Nombre Producto</label>
+            <input type="text"
+                class="form-control" 
+                name="nombre_producto" 
+                id="id_nombre_producto" 
+                placeholder="Nombre Producto">
+        </div>
+        <div class="mb-3">
+            <label for="id_marca_producto" class="form-label">Marca Producto</label>
+            <input type="text"
+                class="form-control" 
+                name="marca_producto" 
+                id="id_marca_producto" 
+                placeholder="Marca Producto">
+        </div>
+        <div class="mb-3">
+            <label for="id_precio_producto" class="form-label">Precio Producto</label>
+            <input type="number"
+                class="form-control" 
+                name="precio_producto" 
+                id="id_precio_producto" 
+                placeholder="Precio Producto">
+        </div>
+        <div class="mb-3">
+            <label for="id_cantidad_producto" class="form-label">Cantidad Producto</label>
+            <input type="number"
+                class="form-control" 
+                name="cantidad_producto" 
+                id="id_cantidad_producto" 
+                placeholder="Cantidad Producto">
+        </div>
+        <div class="mb-3">
+            <label for="id_fecha_entrada" class="form-label">Fecha de Entrada</label>
+            <input type="date"
+                class="form-control" 
+                name="fecha_entrada" 
+                id="id_fecha_entrada" 
+                placeholder="Fecha de Entrada">
+        </div>
+        <div class="mb-3">
+            <label for="id_fecha_salida" class="form-label">Fecha de Salida</label>
+            <input type="date"
+                class="form-control" 
+                name="fecha_salida" 
+                id="id_fecha_salida" 
+                placeholder="Fecha de Salida">
+        </div>
+        <div class="mb-3">
+            <label for="id_telefono" class="form-label">Teléfono</label>
+            <input type="number"
+                class="form-control" 
+                name="telefono" 
+                id="id_telefono" 
+                placeholder="Teléfono">
+        </div>
+        <div class="col-12 help-text">{{ campo.errors }}</div>
+        <input name="" id="" class="btn btn-success" type="submit" value="Guardar información">
+    </form>
+</section>
+{% endblock %}

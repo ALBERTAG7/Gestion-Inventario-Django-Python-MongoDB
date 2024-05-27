@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block titulo %} Tiendas Alex {% endblock %}
+{% block contenido %} 
+<style>
+	body {
+		background: #f8f9fa;
+		margin: 0;
+		padding: 0;
+		font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+		font-size: 16px;
+		color: #333;
+	}
+
+	header {
+		background-color: #333;
+		color: white;
+		text-align: center;
+		padding: 20px;
+		margin-bottom: 15px;
+		box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+	}
+
+	h1 {
+		margin: 20px 0;
+		font-size: 15px;
+		text-align: center;
+		color: #333;
+	}
+
+	section {
+		padding: 20px;
+		margin: 30px auto;
+		background-color: white;
+		border: 1px solid #ddd;
+		box-shadow: 0px 0px 10px #ddd;
+		max-width: 800px;
+		border-radius: 10px;
+	}
+
+	.centrar-imagen {
+		text-align: center;
+	}
+
+	.centrar-imagen img {
+		max-width: 100%;
+		height: auto;
+		border-radius: 10px;
+	}
+</style>
+<br><br>
+<section>
+	<header>{{ user.username|upper }}, Bienvenido</header>
+	<div class="centrar-imagen">
+		<img src="{% static 'tienda.jpg' %}" alt="tienda_abarrotes">
+	</div>
+</section>
+{% endblock %}
